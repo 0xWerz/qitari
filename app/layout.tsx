@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Analytics } from "@vercel/analytics/react";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -111,6 +112,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-8228ZD0YQ8"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-8228ZD0YQ8');
+          `}
+        </Script>
+      </head>
       <body
         className={`${inter.variable} font-sans antialiased relative min-h-screen`}
       >
